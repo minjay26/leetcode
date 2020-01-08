@@ -38,7 +38,9 @@ public class Traversal {
         // recursiveLDR(root);
         //noRecursiveLDR(root);
         // recursiveLRD(root);
-        noRecursiveLRD(root);
+        // noRecursiveLRD(root);
+        // System.out.println(treeDepth(root));
+        search(root, 3);
     }
 
     /**
@@ -141,6 +143,36 @@ public class Traversal {
                 if (cur.left != null)
                     stack.push(cur.left);
             }
+        }
+    }
+
+    public static int treeDepth(TreeNode root) {
+        int lDepth, rDepth;
+        if (root == null) {
+            return 0;
+        } else {
+            lDepth = treeDepth(root.left);
+            rDepth = treeDepth(root.right);
+            if (lDepth > rDepth) {
+                return lDepth + 1;
+            } else {
+                return rDepth + 1;
+            }
+        }
+    }
+
+    public static int search(TreeNode root, int value) {
+        if (root == null) {
+            return 0;
+        }
+        if (root.value == value) {
+            return root.value;
+        } else {
+            int a = search(root.left, value);
+            if (a > 0) {
+                return a;
+            }
+            return search(root.right, value);
         }
     }
 
